@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: twd-config-server
+  labels:
+    app: twd-config-server
+spec:
+  ports:
+    - name: http #http로
+      port: 8888 #80으로 편함
+      targetPort: 8888
+  selector:
+    app: twd-config-server
+  type: LoadBalancer

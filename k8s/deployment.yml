@@ -1,0 +1,34 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: twd-config-server
+  labels:
+    app: twd-config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twd-config-server
+      version: '0.1'
+  template:
+    metadata:
+      labels:
+        app: twd-config-server
+        version: '0.1'
+    spec:
+      containers:
+        - name: twd-config-server
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev
+          image: 391511973453.dkr.ecr.ap-northeast-2.amazonaws.com/twd-config-server:0.0.1
+          ports:
+            - containerPort: 8888
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: 300m
+              memory: 512Mi
+            limits:
+              cpu: 600m
+              memory: 1024Mi

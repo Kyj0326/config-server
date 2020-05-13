@@ -1,0 +1,22 @@
+server:
+  port: 8888
+spring:
+  profiles:
+    active: jdbc
+
+  datasource:
+    url: jdbc:mariadb://database-msa.cdnxkpguqzfr.ap-northeast-2.rds.amazonaws.com/properties
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: admin
+    password: msaadmin!
+
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: "SELECT `key`, `value` FROM `properties` WHERE `application`=? AND `profile`=? AND `label`=?;"
+          order: 0
+
+
+
+
